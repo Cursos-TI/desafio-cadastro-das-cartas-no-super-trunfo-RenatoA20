@@ -2,8 +2,8 @@
 
 int main(){
     char estado1[10], estado2[10], cod1[10], cod2[10], cidade1[20], cidade2[20];
-    int populacao1, populacao2, turismo1, turismo2;
-    float area1, pib1, area2, pib2, densidade1, densidade2, pibPerC1, pibPerC2;
+    int populacao1, populacao2, turismo1, turismo2, compPop, compArea, compPIB, compTurism, compDens, compPIBPC, compSuper;
+    float area1, pib1, area2, pib2, densidade1, densidade2, pibPerC1, pibPerC2, Super1, Super2;
 
     printf("Boas vindas ao cadastro de cartas do jogo Super Trunfo: Cidades!\n"); //saudação inicial para ficar esteticamente mais agradavel e intuitivo
     printf("Informações da primeira carta:\n");
@@ -58,6 +58,16 @@ int main(){
     pibPerC1 = pib1 * 1000000000 / populacao1;
     pibPerC2 = pib2 * 1000000000/ populacao2;
     
+    Super1 = (float) populacao1 + area1 + pib1 + (float) turismo1 + (1/densidade1) + pibPerC1;
+    Super2 = (float) populacao2 + area2 + pib2 + (float) turismo2 + (1/densidade2) + pibPerC2;
+
+    compArea = area1 > area2;
+    compDens = densidade1 < densidade2;
+    compPIB = pib1 > pib2;
+    compPIBPC = pibPerC1 > pibPerC2;
+    compPop = populacao1 > populacao2;
+    compTurism = turismo1 > turismo2;
+    compSuper = Super1 > Super2;
 
     printf("\n Carta 1:\n");
     printf("Estado: %s\n", estado1);
@@ -80,6 +90,16 @@ int main(){
     printf("Número de pontos turísticos: %d\n", turismo2);
     printf("Densidade demográfica: %.2f hab/km²\n", densidade2);
     printf("PIB per capita: %.2f reais\n", pibPerC2);
+
+
+    printf("\n Comparação de cartas: \n");
+    printf("População: Carta 1 venceu. Resultado: %d\n)", compPop);
+    printf("Área: Carta 1 venceu. Resultado: %d\n", compArea);
+    printf("PIB: Carta 1 venceu. Resultado: %d\n", compPIB);
+    printf("Pontos turísticos: Carta 1 venceu. Resultado: %d\n", compTurism);
+    printf("Densidade populacional: Carta 1 venceu. Resultado: %d\n", compDens);
+    printf("PIB per Capita: Carta 1 venceu. Resultado: %d\n", compPIBPC);
+    printf("Super Poder: Carta 1 venceu. Resultado: %d\n", compSuper);
 
     return 0;
 }
